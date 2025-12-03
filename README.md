@@ -5,6 +5,7 @@ The `cnv-language` extension deciphers CNV scripts from point-and-click games by
 ## Features
 
 - Every opened CNV file is automatically deciphered. The process can be undone. If there is any problem with deciphering, you can always re-open the file to try again.
+- Basic highlighting is provided for comments, strings, control flow keywords etc.
 - Debug messages from the extension are written to an output channel named "CNV".
 
 ## Known Issues
