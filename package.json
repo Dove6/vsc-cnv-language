@@ -3,10 +3,10 @@
   "displayName": "CNV Language",
   "description": "Basic support for CNV scripting language",
   "version": "0.0.1",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Dove6/vsc-cnv-language"
-	},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dove6/vsc-cnv-language"
+  },
   "bugs": {
     "url": "https://github.com/Dove6/vsc-cnv-language/issues"
   },
@@ -19,39 +19,53 @@
   "activationEvents": [
     "onStartupFinished"
   ],
-	"main": "./out/extension.js",
+  "main": "./out/extension.js",
   "contributes": {
-    "languages": [{
-      "id": "cnv",
-      "aliases": ["CNV", "cnv"],
-      "extensions": [".cnv", ".def", ".class"],
-      "configuration": "./language-configuration.json"
-    }],
+    "languages": [
+      {
+        "id": "cnv",
+        "aliases": [
+          "CNV",
+          "cnv"
+        ],
+        "extensions": [
+          ".cnv",
+          ".def",
+          ".class"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
     "configurationDefaults": {
       "[cnv]": {
         "files.encoding": "windows1250",
         "files.eol": "\r\n"
       }
     },
-    "grammars": [{
-      "language": "cnv",
-      "scopeName": "source.cnv",
-      "path": "./syntaxes/cnv.tmLanguage.json"
-    }]
+    "grammars": [
+      {
+        "language": "cnv",
+        "scopeName": "source.cnv",
+        "path": "./syntaxes/cnv.tmLanguage.json"
+      }
+    ]
   },
-	"scripts": {
-		"vscode:prepublish": "pnpm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint",
-		"watch": "tsc -w -p ./"
-	},
-	"devDependencies": {
-		"@eslint/js": "^9.13.0",
-		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^22",
-		"@types/vscode": "^1.100.0",
-		"eslint": "^9.13.0",
-		"typescript": "^5.9.2",
-		"typescript-eslint": "^8.39.0"
-	}
+  "scripts": {
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "tsc -p ./",
+    "lint": "eslint",
+    "watch": "tsc -w -p ./"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "@stylistic/eslint-plugin": "^2.9.0",
+    "@types/node": "^22",
+    "@types/vscode": "^1.100.0",
+    "eslint": "^9.13.0",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.39.0"
+  },
+  "dependencies": {
+    "reksio-formats": "^0.0.2"
+  }
 }

@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      reksio-formats:
+        specifier: ^0.0.2
+        version: 0.0.2
     devDependencies:
       '@eslint/js':
         specifier: ^9.13.0
@@ -422,6 +426,9 @@ packages:
   punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
+
+  reksio-formats@0.0.2:
+    resolution: {integrity: sha512-uXCbczpnRaIWsRo12qSPv8qqT03PDMFcrDtx/hrL9HeDS/HIUekjVA3aM5qFfxUtcLcpVVkJImoNL0fbVI6txg==}
 
   resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
@@ -913,6 +920,8 @@ snapshots:
   prelude-ls@1.2.1: {}
 
   punycode@2.3.1: {}
+
+  reksio-formats@0.0.2: {}
 
   resolve-from@4.0.0: {}
 
