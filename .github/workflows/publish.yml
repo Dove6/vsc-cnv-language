@@ -1,9 +1,14 @@
+name: Deploy Extension
+
 on:
   push:
     tags:
       - "v*.*.*"
+  workflow_dispatch:
 
-name: Deploy Extension
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -20,9 +25,32 @@ jobs:
           node-version: 20
           cache: "pnpm"
       - name: Install dependencies
-        run: pnpm ci
+        run: pnpm install
       - name: Publish to Visual Studio Marketplace
+        id: publish_vsx
         uses: HaaLeo/publish-vscode-extension@v2
         with:
           pat: ${{ secrets.VS_MARKETPLACE_TOKEN }}
           registryUrl: https://marketplace.visualstudio.com
+          dependencies: false
+      - name: Create Draft Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: ${{ github.ref_name }}
+          draft: true
+          prerelease: false
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ steps.publish_vsx.outputs.vsixPath }}
+      - uses: eregon/publish-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          release_id: ${{ steps.create_release.outputs.id }}
