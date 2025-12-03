@@ -1,0 +1,25 @@
+{
+  "name": "cnv-language",
+  "displayName": "CNV Language",
+  "description": "Basic support for CNV scripting language",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.106.1"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "cnv",
+      "aliases": ["CNV", "cnv"],
+      "extensions": [".cnv",".def",".class"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "cnv",
+      "scopeName": "source.cnv",
+      "path": "./syntaxes/cnv.tmLanguage.json"
+    }]
+  }
+}
