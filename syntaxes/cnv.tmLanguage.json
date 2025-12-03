@@ -7,14 +7,34 @@
 		},
 		{
 			"include": "#strings"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#code-comments"
 		}
 	],
 	"repository": {
 		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.cnv",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
+			"patterns": [
+				{
+					"name": "keyword.control.cnv",
+					"match": "@(BREAK|CONTINUE|FOR|IF|LOOP|ONEBREAK|RETURN|WHILE)\\b"
+				},
+				{
+					"name": "keyword.operator.new.cnv",
+					"match": "@(BOOL|CREATE|DOUBLE|INT|STRING)\\b"
+				},
+				{
+					"name": "keyword.operator.cnv",
+					"match": "\\+|-|\\*|@|%|;|\\^"
+				},
+				{
+					"name": "keyword.other.cnv",
+					"match": ":|="
+				}
+			]
 		},
 		"strings": {
 			"name": "string.quoted.double.cnv",
@@ -22,8 +42,23 @@
 			"end": "\"",
 			"patterns": [
 				{
-					"name": "constant.character.escape.cnv",
-					"match": "\\\\."
+					"include": "#keywords"
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.number-sign.cnv",
+					"match": "^\\s*#.*"
+				}
+			]
+		},
+		"code-comments": {
+			"patterns": [
+				{
+					"name": "comment.block.cnv",
+					"match": "![^;}]*"
 				}
 			]
 		}
