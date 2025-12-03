@@ -1,5 +1,6 @@
 {
   "name": "cnv-language",
+  "publisher": "dove6",
   "displayName": "CNV Language",
   "description": "Basic support for CNV scripting language",
   "version": "0.0.1",
