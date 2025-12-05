@@ -19,6 +19,10 @@ The package is a part of the reimplementation of the PiKlib/BlooMoo engine Reksi
 
 ## Release Notes
 
+### 0.0.6
+
+- [Fix extension not working due to missing dependencies](https://github.com/Dove6/vsc-cnv-language/commit/dbf84fd380d70bf3b2dc55b92d7084295dedf528)
+
 ### 0.0.5
 
 - [Switch text encoding library to iconv-lite](https://github.com/Dove6/vsc-cnv-language/commit/5aa0cb414d14ca982a544c67e86d34aa6a01abf9)
