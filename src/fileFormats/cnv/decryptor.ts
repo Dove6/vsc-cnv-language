@@ -1,4 +1,4 @@
-import CodepageEncoder from '@point-of-sale/codepage-encoder'
+import { encode } from 'iconv-lite'
 
 const textDecoder = new TextDecoder('windows-1250')
 
@@ -37,7 +37,7 @@ const calcShift = (step: number, movement: number): { step: number; shift: numbe
 }
 
 const encodeIfNeeded = (content: ArrayBuffer | string) =>
-    typeof content === 'string' ? (CodepageEncoder.encode(content, 'windows1250') as Uint8Array<ArrayBuffer>).buffer : content
+    typeof content === 'string' ? encode(content, 'windows1250') : content
 
 export const decryptCNV = (content: ArrayBuffer | string): string => {
     const buffer = encodeIfNeeded(content)
@@ -55,7 +55,7 @@ export const decryptCNV = (content: ArrayBuffer | string): string => {
     let step = 0
     let shift = 0
 
-    const decodeingBuffer = new Uint8Array(1);
+    const decodingBuffer = new Uint8Array(1)
     for (let pos = 0; pos < payload.byteLength; pos++) {
         if (textDecoder.decode(payload.slice(pos, pos + 3)) === '<E>') {
             output += '\r\n'
@@ -67,8 +67,8 @@ export const decryptCNV = (content: ArrayBuffer | string): string => {
             step = newShift.step
             shift = newShift.shift
 
-            decodeingBuffer[0] = payload[pos] + ((shift * directionMultiplier) % 256)
-            output += textDecoder.decode(decodeingBuffer)
+            decodingBuffer[0] = payload[pos] + ((shift * directionMultiplier) % 256)
+            output += textDecoder.decode(decodingBuffer)
         }
     }
 

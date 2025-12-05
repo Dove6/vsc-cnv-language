@@ -69,7 +69,7 @@
     "typescript-eslint": "^8.39.0"
   },
   "dependencies": {
-    "@point-of-sale/codepage-encoder": "^3.0.0",
+    "iconv-lite": "0.7.0",
     "reksio-formats": "0.0.3"
   }
 }
