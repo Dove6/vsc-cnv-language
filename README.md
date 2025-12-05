@@ -19,4 +19,10 @@ The package is a part of the reimplementation of the PiKlib/BlooMoo engine Reksi
 
 ## Release Notes
 
-(To be continued)
+### 0.0.3
+
+- [Add license](https://github.com/Dove6/vsc-cnv-language/commit/0878b8e1bc9ce19f153af45e2da32b3ffe281bda)
+
+### 0.0.2
+
+- [Provide basic syntax highlighting rules](https://github.com/Dove6/vsc-cnv-language/commit/101cb639df5498690c77f3f4a776cfa8e3a7e177)
