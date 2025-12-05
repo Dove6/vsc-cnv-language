@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { decryptCNV } from 'reksio-formats/cnv/decryptor';
+import { parseHeader, decryptCNV } from './fileFormats/cnv/decryptor';
 
 const textEncoder = (() => {
 	const WINDOWS_1250_DECODE_LUT = [
@@ -84,7 +84,7 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.commands.executeCommand('workbench.action.files.setActiveEditorReadonlyInSession');
 		}
 		const firstLine = document.getText(new vscode.Range(0, 0, 1, 0)).trim();
-		const parsedHeader = firstLine.match(/^\{<([CD]):(\d+)>\}$/);
+		const parsedHeader = parseHeader(firstLine);
 		if (!parsedHeader) {
 			outputChannel.appendLine(`File already deciphered: ${document.fileName} [${document.languageId}], ${firstLine}, ${parsedHeader}`);
 			return;

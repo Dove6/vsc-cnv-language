@@ -1,18 +1,17 @@
-const textEncoder = new TextEncoder()
-const textDecoder = new TextDecoder('utf-8')
+import CodepageEncoder from '@point-of-sale/codepage-encoder'
 
-const HEADER_PATTERN = /{<(?<direction>[cCdD]):(?<movement>\d+)>}/
-const CR = '\r'.charCodeAt(0)
-const NL = '\n'.charCodeAt(0)
+const textDecoder = new TextDecoder('windows-1250')
 
-type Direction = 'C' | 'd'
+const HEADER_PATTERN = /^{<(?<direction>[CD]):(?<movement>\d+)>}/i
+
+type Direction = 'C' | 'D'
 type Header = {
     length: number
     direction: Direction
     movement: number
 }
 
-const parseHeader = (content: string): Header | null => {
+export const parseHeader = (content: string): Header | null => {
     const match = HEADER_PATTERN.exec(content)
     if (match == null || match.groups === undefined) {
         return null
@@ -21,7 +20,7 @@ const parseHeader = (content: string): Header | null => {
     const { direction, movement } = match.groups
     return {
         length: match[0].length,
-        direction: direction as Direction,
+        direction: direction.toUpperCase() as Direction,
         movement: parseInt(movement, 10),
     }
 }
@@ -37,54 +36,39 @@ const calcShift = (step: number, movement: number): { step: number; shift: numbe
     }
 }
 
-export const isCNVEncrypted = (content: ArrayBuffer | string) => {
-    let buffer: ArrayBuffer
-    if (typeof content === 'string') {
-        buffer = textEncoder.encode(content).buffer
-    } else {
-        buffer = content
-    }
-
-    const contentText = textDecoder.decode(buffer)
-    return parseHeader(contentText) !== null
-}
+const encodeIfNeeded = (content: ArrayBuffer | string) =>
+    typeof content === 'string' ? (CodepageEncoder.encode(content, 'windows1250') as Uint8Array<ArrayBuffer>).buffer : content
 
 export const decryptCNV = (content: ArrayBuffer | string): string => {
-    let buffer: ArrayBuffer
-    if (typeof content === 'string') {
-        buffer = textEncoder.encode(content).buffer
-    } else {
-        buffer = content
-    }
-
+    const buffer = encodeIfNeeded(content)
     const contentText = textDecoder.decode(buffer)
     const header = parseHeader(contentText)
     if (header === null) {
-        return contentText.replaceAll('\r\n', '\n')
+        return contentText
     }
 
     const { length, direction, movement } = header
-    const directionMultiplier = direction.toLowerCase() === 'd' ? -1 : 1
+    const directionMultiplier = direction === 'D' ? -1 : 1
     const payload = new Uint8Array(buffer.slice(length))
 
     let output = ''
     let step = 0
     let shift = 0
 
+    const decodeingBuffer = new Uint8Array(1);
     for (let pos = 0; pos < payload.byteLength; pos++) {
-        if (
-            payload[pos] === '<'.charCodeAt(0) &&
-            payload[pos + 1] === 'E'.charCodeAt(0) &&
-            payload[pos + 2] === '>'.charCodeAt(0)
-        ) {
-            output += '\n'
+        if (textDecoder.decode(payload.slice(pos, pos + 3)) === '<E>') {
+            output += '\r\n'
             pos += 2
-        } else if (payload[pos] !== CR && payload[pos] !== NL) {
+        } else if (textDecoder.decode(payload.slice(pos, pos + 2)) === '\r\n') {
+            pos += 1
+        } else {
             const newShift = calcShift(step, movement)
             step = newShift.step
             shift = newShift.shift
 
-            output += String.fromCharCode(payload[pos] + ((shift * directionMultiplier) % 256))
+            decodeingBuffer[0] = payload[pos] + ((shift * directionMultiplier) % 256)
+            output += textDecoder.decode(decodeingBuffer)
         }
     }
 
