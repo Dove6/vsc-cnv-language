@@ -19,9 +19,9 @@ The package is a part of the reimplementation of the PiKlib/BlooMoo engine Reksi
 
 ## Release Notes
 
-### 0.0.6
+### 0.0.7
 
-- [Fix extension not working due to missing dependencies](https://github.com/Dove6/vsc-cnv-language/commit/dbf84fd380d70bf3b2dc55b92d7084295dedf528)
+- [Fix extension not working due to missing dependencies](https://github.com/Dove6/vsc-cnv-language/commit/c79fbcc1c8a648a08ce447515972d7811c309a9a)
 
 ### 0.0.5
 
