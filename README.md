@@ -12,7 +12,7 @@ The [`cnv-language`](https://marketplace.visualstudio.com/items?itemName=dove6.c
 
 - If a file gets deciphered shortly after VSCode starts up, it may not get marked as dirty.
 
-## Ackonwledgements
+## Acknowledgements
 
 This projects depends on the [`reksio-formats`](https://www.npmjs.com/package/reksio-formats) package.
 The package is a part of the reimplementation of the PiKlib/BlooMoo engine Reksio games run on: https://github.com/ReksioEngine/ReksioEngine
