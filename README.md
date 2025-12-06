@@ -1,6 +1,6 @@
-# CNV Language - VS Code Extensions
+# CNV Language - VS Code Extension
 
-The `cnv-language` extension deciphers CNV scripts from point-and-click games by Aidem Media on sight!
+The [`cnv-language`](https://marketplace.visualstudio.com/items?itemName=dove6.cnv-language) extension deciphers CNV scripts from point-and-click games by Aidem Media on sight!
 
 ## Features
 

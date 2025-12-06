@@ -1,9 +1,11 @@
 {
   "name": "cnv-language",
-  "publisher": "dove6",
   "displayName": "CNV Language",
   "description": "Basic support for CNV scripting language",
   "version": "0.0.8",
+  "publisher": "dove6",
+  "private": true,
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/Dove6/vsc-cnv-language"
@@ -12,7 +14,7 @@
     "url": "https://github.com/Dove6/vsc-cnv-language/issues"
   },
   "engines": {
-    "vscode": "^1.106.1"
+    "vscode": "^1.100.1"
   },
   "categories": [
     "Programming Languages"
