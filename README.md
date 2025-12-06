@@ -19,6 +19,10 @@ The package is a part of the reimplementation of the PiKlib/BlooMoo engine Reksi
 
 ## Release Notes
 
+### 0.0.9
+
+- [Add extension icon](https://github.com/Dove6/vsc-cnv-language/commit/5001d7b9b2f839c769a2ecede3b591d520623c1c)
+
 ### 0.0.8
 
 - [Fix characters getting incorrectly re-coded](https://github.com/Dove6/vsc-cnv-language/commit/4e30506a341f946025bd3b76d0fd98ee94bb5667)
