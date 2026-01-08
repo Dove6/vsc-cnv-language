@@ -19,6 +19,10 @@ The package is a part of the reimplementation of the PiKlib/BlooMoo engine Reksi
 
 ## Release Notes
 
+### 0.0.10
+
+- [Allow the extension to be used in browser](https://github.com/Dove6/vsc-cnv-language/commit/5d7b3c198e9eafe070a1d11fc5602d841da5f846)
+
 ### 0.0.9
 
 - [Add extension icon](https://github.com/Dove6/vsc-cnv-language/commit/5001d7b9b2f839c769a2ecede3b591d520623c1c)
