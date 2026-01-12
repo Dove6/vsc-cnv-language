@@ -3,7 +3,7 @@
   "displayName": "CNV Language",
   "description": "Basic support for CNV scripting language",
   "icon": "./cnvLogo.png",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "publisher": "dove6",
   "private": true,
   "license": "MIT",

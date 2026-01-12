@@ -19,6 +19,10 @@ The package is a part of the reimplementation of the PiKlib/BlooMoo engine Reksi
 
 ## Release Notes
 
+### 0.0.11
+
+- [Fix a bug rendering newly opened decoded files read-only](https://github.com/Dove6/vsc-cnv-language/commit/b51ccc703ae1510b47a96b6ca40294ed0330c972)
+
 ### 0.0.10
 
 - [Allow the extension to be used in browser](https://github.com/Dove6/vsc-cnv-language/commit/5d7b3c198e9eafe070a1d11fc5602d841da5f846)
