@@ -47,6 +47,8 @@ export function activate(context: vscode.ExtensionContext) {
 		const parsedHeader = parseHeader(firstLine);
 		if (!parsedHeader) {
 			outputChannel.appendLine(`File already deciphered: ${document.fileName} [${document.languageId}], ${firstLine}, ${parsedHeader}`);
+			vscode.commands.executeCommand('workbench.action.files.resetActiveEditorReadonlyInSession');
+			outputChannel.appendLine(`Made ${document.fileName} writable again.`);
 			return;
 		}
 		const documentText = document.getText();
